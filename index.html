@@ -4,36 +4,42 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Foundation for Sites</title>
+    <title>ekg3000</title>
     <link rel="stylesheet" href="css/foundation.css">
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" type="text/css" href="css/epoch.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
+
+
+  <script src="js/zoom_chart.js"></script>
+  <script src="canvasjs.min.js"></script>
   </head>
+
+
   <body>
     <div class="row">
       <div class="large-12 columns">
-        <h1>Welcome to ekg3000</h1>
+        <h1>Welcome to EKG3000</h1>
       </div>
     </div>
 
-    <div class="row">
-      <p>epoch.js</p>
-      <div id="lineChart" style="width: 700px; height: 250px"></div>
+    <div id="chartContainer" style="height: 400px; width: 100%;">
     </div>
 
-<!-- 
-    <div class="row">
-      <p>chart.js</p>
-      <canvas id="chartChart"></canvas>
-    </div> -->
-aesfesfsef
-    <div class="row">
-      <p>chart.js</p>
-      <canvas id="chartChart" height="300" width="1800"></canvas> 
-    </div>
+<!--     <?php
 
-    <script src="js/d3.js"></script>
+      $f = fopen("ecg60secclean.txt", "r");
+
+      // Liest Zeile für Zeile bis zum Ende der Datei
+      while(!feof($f)) { 
+          echo fgets($f) . "<br />";
+      }
+
+      fclose($f);
+    ?> -->
+
+
+<!--     <script src="js/d3.js"></script>
     <script src="js/vendor/jquery.js"></script>
     <script src="js/vendor/what-input.js"></script>
     <script src="js/vendor/foundation.js"></script>
@@ -41,6 +47,6 @@ aesfesfsef
     <script src="js/epoch.js"></script>
     <script src="js/Chart.bundle.js"></script>
     <script src="js/papaparse.js"></script>
-    <script src="plot.js"></script>
+    <script src="plot.js"></script> -->
   </body>
 </html>
