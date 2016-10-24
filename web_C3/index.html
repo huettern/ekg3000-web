@@ -29,7 +29,7 @@
                       document.getElementById("txtHint").innerHTML = this.responseText;
                   }
               };
-              xmlhttp.open("GET","getdevices.php?dev="+str,true);
+              xmlhttp.open("GET","http://192.168.229.101/getdevices.php?dev="+str,true);
               xmlhttp.send();
           }
         }
