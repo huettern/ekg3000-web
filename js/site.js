@@ -28,9 +28,8 @@ $(document).ready(function() {
             for (i = 0; i < res.length; i++) {
                 var opt = res[i].name;  
                 var li = document.createElement("li");
-                var link = document.createElement("a");   
-                var oc = "ddDevicesSelected(\"" + opt + "\")";
-                link.setAttribute("onclick", oc);          
+                li.setAttribute("id", "ddLi");   
+                var link = document.createElement("a");          
                 var text = document.createTextNode(opt);
                 link.appendChild(text);
                 link.href = "#";
@@ -44,8 +43,11 @@ $(document).ready(function() {
         console.log("btn");
     });
 
-    $("#ddDevices").click(function() {
-        console.log("Selected Option:"+val($(this).HTML()));
+    $("li").click(function() {
+        var v = $(this).text();
+        console.log(v);
+
+        // console.log("Selected Option:"+val($(this).HTML()));
 
 /*        var url = 'http://noahhome.selfhost.bz:8080/ekg3000/getfilelist.php';
 
