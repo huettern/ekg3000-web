@@ -8,6 +8,7 @@ function ddDevicesSelected(text) {
 }
 
 
+    
 $(document).ready(function() { 
     /* is executed after page is loaded */
     var url = 'http://noahhome.selfhost.bz:8080/ekg3000/getdevices.php';
@@ -23,18 +24,25 @@ $(document).ready(function() {
             console.log(response);
             var res = JSON.parse(response);
         
-            var list = document.getElementById("ddDevices"); 
+            var list = document.getElementById("#ddDevices"); 
 
             for (i = 0; i < res.length; i++) {
                 var opt = res[i].name;  
-                var li = document.createElement("li");
-                li.setAttribute("id", "ddLi");   
-                var link = document.createElement("a");          
-                var text = document.createTextNode(opt);
-                link.appendChild(text);
-                link.href = "#";
-                li.appendChild(link);
-                list.appendChild(li);
+              //  var sel = document.createElement("select");
+                //li.setAttribute("id", "ddLi" + res[i].id);   
+                $("#ddDevices").append($('<option>', {
+                    value: res[i].id,
+                    text: res[i].name
+                }))
+               // sel.setAttribute("class", "ddLi"); 
+               // sel.setAttribute("value", res[i].id)  
+                //var link = document.createElement("a");          
+               // var text = document.createTextNode(opt);
+                //link.appendChild(text);
+                //link.href = "#";
+                //li.appendChild(link);
+               // sel.appendChild(opt);
+                //list.appendChild(sel);
             }
         }
     });
@@ -43,11 +51,10 @@ $(document).ready(function() {
         console.log("btn");
     });
 
-    $("li").click(function() {
-        var v = $(this).text();
+    $("#ddDevices").click(function() {  
+        var v = $("#ddDevices option:selected").text();
         console.log(v);
-
-        // console.log("Selected Option:"+val($(this).HTML()));
+         // console.log("Selected Option:"+val($(this).HTML()));
 
 /*        var url = 'http://noahhome.selfhost.bz:8080/ekg3000/getfilelist.php';
 
