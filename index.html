@@ -1,26 +1,59 @@
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ekg3000</title>
-    <link rel="stylesheet" href="css/foundation.css">
-    <link rel="stylesheet" href="css/app.css">
-    <link rel="stylesheet" type="text/css" href="css/epoch.css">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+  <title>EKG 3000</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 
     <script src="js/vendor/jquery.js"></script>
     <script src="js/d3.js"></script>
-    <script src="js/vendor/foundation.js"></script>
-    <script src="js/Chart.bundle.js"></script> 
+    <script src="js/vendor/bootstrap.min.js"></script>
 
-<!--   <script src="js/zoom_chart.js"></script>
-  <script src="canvasjs.min.js"></script> -->
+    <script src="site.js"></script>
+
   </head>
 
+  <div class="container">
+  <h1>My First Bootstrap Page</h1>
+  <p>This is some text.</p> 
 
-  <body>
+
+  <div class="row">
+    <div class="col-sm-1">
+      <h4>Device:</h4>
+    </div>
+    <div class="col-sm-3">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="bDevices"><span id="bDevicesText">Select Device</span>
+      <span class="caret"></span></button>
+      <ul class="dropdown-menu" id="ddDevices">
+      </ul>
+    </div>
+
+    <div class="col-sm-1">
+      <h4>File:</h4>
+    </div>
+        <div class="col-sm-3">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="bFile"><span id="bFileText">Select File</span>
+      <span class="caret"></span></button>
+      <ul class="dropdown-menu" id="ddFiles">
+      </ul>
+    </div>
+
+    <div class="col-sm-1">
+      <h4>Load</h4>
+    </div>
+    <div class="col-sm-3">
+      <button type="button" class="btn btn-primary" id="btLoad">File</button>
+    </div>
+  </div>
+
+</div>
+
+
+
+ <!--  <body>
     <div class="row">
       <div class="large-12 columns">
         <h1>Welcome to EKG3000</h1>
@@ -33,7 +66,7 @@
       </div>
       <canvas id="myChartAxis" height="300" width="0"></canvas>
     </div>
-
+ -->
 
 
 <!--     <?php
@@ -48,9 +81,9 @@
       fclose($f);
     ?> -->
     
-
+<!-- 
     <script src="js/scroll_chart.js"></script>
- 
+  -->
 <!--     <script src="js/vendor/what-input.js"></script>
     <script src="js/app.js"></script>
     <script src="js/epoch.js"></script>
