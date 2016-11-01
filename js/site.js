@@ -54,6 +54,7 @@ $(document).ready(function() {
     $("#ddDevices").click(function() {  
         var v = $("#ddDevices option:selected").text();
         console.log(v);
+        // $(this).children("#ddDevDefault").remove();
          // console.log("Selected Option:"+val($(this).HTML()));
 
 /*        var url = 'http://noahhome.selfhost.bz:8080/ekg3000/getfilelist.php';
