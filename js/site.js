@@ -51,13 +51,13 @@ $(document).ready(function() {
         console.log("btn");
     });
 
-    $("#ddDevices").click(function() {  
-        var v = $("#ddDevices option:selected").text();
-        console.log(v);
-        // $(this).children("#ddDevDefault").remove();
-         // console.log("Selected Option:"+val($(this).HTML()));
+    $("#ddDevices").click(function() { 
+        var sDevName = $("#ddDevices option:selected").text();
+        console.log(sDevName);
+        var sDevID = $("#ddDevices option:selected").val();
+        console.log(sDevID);
 
-/*        var url = 'http://noahhome.selfhost.bz:8080/ekg3000/getfilelist.php';
+        var url = 'http://noahhome.selfhost.bz:8080/ekg3000/getfilelist.php' + '?dev_id=' + sDevID;
 
         $.ajax({
             url: 'proxy.php',
@@ -73,19 +73,14 @@ $(document).ready(function() {
                 var list = document.getElementById("ddFiles"); 
 
                 for (i = 0; i < res.length; i++) {
-                    var opt = res[i].name;  
-                    var li = document.createElement("li");
-                    var link = document.createElement("a");   
-                    var oc = "ddDevicesSelected(\"" + opt + "\")";
-                    link.setAttribute("onclick", oc);          
-                    var text = document.createTextNode(opt);
-                    link.appendChild(text);
-                    link.href = "#";
-                    li.appendChild(link);
-                    list.appendChild(li);
+                    var opt = res[i].name;   
+                    $("#ddFiles").append($('<option>', {
+                        value: res[i].id,
+                        text: res[i].time + '  |  ' + (res[i].file).split("/").pop() 
+                    }))
                 }
             }
-        });*/
+        });
     });
 
 });
