@@ -51,11 +51,9 @@ $(document).ready(function() {
         console.log("btn");
     });
 
-    $("#ddDevices").click(function() { 
+    $("#ddDevices").change(function() {
         var sDevName = $("#ddDevices option:selected").text();
-        console.log(sDevName);
         var sDevID = $("#ddDevices option:selected").val();
-        console.log(sDevID);
 
         var url = 'http://noahhome.selfhost.bz:8080/ekg3000/getfilelist.php' + '?dev_id=' + sDevID;
 
@@ -72,12 +70,14 @@ $(document).ready(function() {
             
                 var list = document.getElementById("ddFiles"); 
 
-                for (i = 0; i < res.length; i++) {
-                    var opt = res[i].name;   
+                $('#ddFiles').empty().append('<option disabled selected value>Select..</option>');
+
+               for (i = 0; i < res.length; i++) {
+                    var opt = res[i].name;
                     $("#ddFiles").append($('<option>', {
                         value: res[i].id,
                         text: res[i].time + '  |  ' + (res[i].file).split("/").pop() 
-                    }))
+                    }));
                 }
             }
         });
