@@ -7,37 +7,47 @@ function ddDevicesSelected(text) {
 }
 
 function plot(jsonF) {
-    console.log(jsonF);
-    console.log(jsonF.ekg.data);
+/*    console.log(jsonF);
+    console.log(jsonF.ekg.data);*/
 
-    // set up our data series with 50 random data points
-    var seriesData = [[]];
-    var random = new Rickshaw.Fixtures.RandomData(150);
+    // set up our data series
+     var points = [];
+
     for (var i = 0; i < jsonF.ekg.nsamples; i++) {
-        random.addData(seriesData);
-        seriesData[0][i].r = jsonF.ekg.data[i]
+        points.push({"x":i, "y":jsonF.ekg.data[i]});
     }
+
+    console.log(points);
     // instantiate our graph!
     var graph = new Rickshaw.Graph( {
         element: document.getElementById("chart"),
-        renderer: 'scatterplot',
+        height: 500,
+        renderer: 'line',
         series: [
             {
-                color: "#ff9030",
-                data: seriesData[0],
-                opacity: 0.5
+                color: 'steelblue',
+                data: points,
+                // name: 'New York',
+                strokeWidth: 1,
+                opacity: 1
             }
         ]
     } );
-    graph.renderer.dotSize = 6;
-    new Rickshaw.Graph.HoverDetail({ graph: graph });
+
+    var slider = new Rickshaw.Graph.RangeSlider.Preview({
+        graph: graph,
+        element: document.querySelector('#slider')
+    });
+    // var slider = new Rickshaw.Graph.RangeSlider({
+    //     graph: graph,
+    //     element: document.querySelector('#slider')
+    // });
     graph.render();
 
-    var slider = new Rickshaw.Graph.RangeSlider({
-    graph: graph,
-    element: document.querySelector('#slider')
-});
-
+    var xAxis = new Rickshaw.Graph.Axis.Time({
+        graph: graph
+    });
+    xAxis.render();
 }
 
     
