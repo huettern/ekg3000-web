@@ -3,7 +3,6 @@
 function ddDevicesSelected(text) {
     var btn = document.getElementById("bDevices"); 
     // btn.value(text);
-    console.log(btn);
     $('#bDevicesText').text(text);
 }
 
@@ -21,7 +20,6 @@ $(document).ready(function() {
         },
         success: function(response) {
             // response now contains full HTML of google.com
-            console.log(response);
             var res = JSON.parse(response);
         
             var list = document.getElementById("#ddDevices"); 
@@ -47,10 +45,6 @@ $(document).ready(function() {
         }
     });
 
-    $("#btLoad").click(function() {
-        console.log("btn");
-    });
-
     $("#ddDevices").change(function() {
         var sDevName = $("#ddDevices option:selected").text();
         var sDevID = $("#ddDevices option:selected").val();
@@ -65,7 +59,6 @@ $(document).ready(function() {
             },
             success: function(response) {
                 // response now contains full HTML of google.com
-                console.log(response);
                 var res = JSON.parse(response);
             
                 var list = document.getElementById("ddFiles"); 
@@ -81,6 +74,28 @@ $(document).ready(function() {
                 }
             }
         });
+    });
+
+
+    $("#btLoad").click(function() {
+        console.log("btn");
+        var sFileID = $("#ddFiles option:selected").val();
+        var url = 'http://noahhome.selfhost.bz:8080/ekg3000/getfile.php' + '?file_id=' + sFileID;
+
+        $.ajax({
+            url: 'proxy.php',
+            type: 'GET',
+            data: {
+                address: url
+            },
+   //         dataType: 'json; charset=utf-8',
+            success: function(response) {
+                // response now contains full HTML of google.com
+                var res = JSON.parse(response);
+
+            }
+        });
+        
     });
 
 });

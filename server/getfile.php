@@ -19,7 +19,16 @@ $result = mysqli_query($con,$sql);
 
 $row = mysqli_fetch_array($result);
 
-echo readfile($row['file']);
+// echo readfile($row['file']);
+
+set_time_limit(0);
+$file = @fopen($row['file'],"rb");
+while(!feof($file))
+{
+	print(@fread($file, 1024*8));
+	ob_flush();
+	flush();
+}
 
 mysqli_close($con);
 ?>
