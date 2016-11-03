@@ -6,6 +6,39 @@ function ddDevicesSelected(text) {
     $('#bDevicesText').text(text);
 }
 
+function plot(jsonF) {
+    console.log(jsonF);
+    console.log(jsonF.ekg.data);
+
+    // set up our data series with 50 random data points
+    var seriesData = [[]];
+    var random = new Rickshaw.Fixtures.RandomData(150);
+    for (var i = 0; i < jsonF.ekg.nsamples; i++) {
+        random.addData(seriesData);
+        seriesData[0][i].r = jsonF.ekg.data[i]
+    }
+    // instantiate our graph!
+    var graph = new Rickshaw.Graph( {
+        element: document.getElementById("chart"),
+        renderer: 'scatterplot',
+        series: [
+            {
+                color: "#ff9030",
+                data: seriesData[0],
+                opacity: 0.5
+            }
+        ]
+    } );
+    graph.renderer.dotSize = 6;
+    new Rickshaw.Graph.HoverDetail({ graph: graph });
+    graph.render();
+
+    var slider = new Rickshaw.Graph.RangeSlider({
+    graph: graph,
+    element: document.querySelector('#slider')
+});
+
+}
 
     
 $(document).ready(function() { 
@@ -88,11 +121,11 @@ $(document).ready(function() {
             data: {
                 address: url
             },
-   //         dataType: 'json; charset=utf-8',
+
             success: function(response) {
                 // response now contains full HTML of google.com
-                var res = JSON.parse(response);
-
+                var jsonFile = JSON.parse(response);
+                plot(jsonFile);
             }
         });
         
