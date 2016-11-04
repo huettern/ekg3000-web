@@ -34,14 +34,15 @@ function plot(jsonF) {
         ]
     } );
 
-    var slider = new Rickshaw.Graph.RangeSlider.Preview({
-        graph: graph,
-        element: document.querySelector('#slider')
-    });
-    // var slider = new Rickshaw.Graph.RangeSlider({
+    // var slider = new Rickshaw.Graph.RangeSlider.Preview({
     //     graph: graph,
     //     element: document.querySelector('#slider')
     // });
+    var slider = new Rickshaw.Graph.RangeSlider({
+        graph: graph,
+        element: document.querySelector('#slider')
+    });
+
     graph.render();
 
     var xAxis = new Rickshaw.Graph.Axis.Time({
