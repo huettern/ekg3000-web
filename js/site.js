@@ -8,13 +8,13 @@ function ddDevicesSelected(text) {
 
 function plot(jsonF) {
 /*    console.log(jsonF);
-    console.log(jsonF.ekg.data);*/
+    console.log(jsonF.data);*/
 
     // set up our data series
      var points = [];
 
-    for (var i = 0; i < jsonF.ekg.nsamples; i++) {
-        points.push({"x":i, "y":jsonF.ekg.data[i]});
+    for (var i = 0; i < jsonF.nsamples; i++) {
+        points.push({"x":i, "y":jsonF.data[i]});
     }
 
     console.log(points);
