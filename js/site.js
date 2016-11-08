@@ -9,7 +9,7 @@ function ddDevicesSelected(text) {
 
 function plot(jsonF) {
     console.log(jsonF);
-    console.log(jsonF.ekg.data);
+    console.log(jsonF.data);
 
       var chart = c3.generate({
                size: {
@@ -17,7 +17,7 @@ function plot(jsonF) {
                },
                bindto: '#chart',
                data: {
-                columns: [jsonF.ekg.data]
+                columns: [jsonF.data]
                },
 
                zoom: {
