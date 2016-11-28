@@ -62,7 +62,12 @@
 
          <!-- Plot -->
          <div class="row">
-            <div class="col-sm-11">
+         <div class="col-sm-1">
+            <button type="button" class="btn btn-default">
+               <span class="glyphicon glyphicon-menu-right"></span>
+            </button>
+         </div>
+            <div class="col-sm-10">
               <div id="chart"></div>
               <div id="slider"></div>
             </div>
