@@ -20,8 +20,12 @@ $result = mysqli_query($con,$sql);
 $row = mysqli_fetch_array($result);
 
 // echo readfile($row['file']);
-
 set_time_limit(0);
+
+if(!file_exists($row['file'])) {
+	die('File not found')
+}
+
 $file = @fopen($row['file'],"rb");
 while(!feof($file))
 {
