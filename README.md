@@ -36,6 +36,7 @@ unzip mysql-connector-python-2.0.4.zip
 cd mysql-connector-python-2.0.4/
 python3.5 setup.py build
 sudo python3.5 setup.py install
-
+sudo apt-get insall python3-pip
+pip3 install hbmqtt
 ```
 

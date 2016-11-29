@@ -16,7 +16,7 @@ fileroot = '/home/ekg3000/files'
 
 mysqlconfig = {
   'user': 'ekg3000',
-  'password': 'ekg3000',
+  'password': 'n4O13YsX1wn686hk',
   'host': '127.0.0.1',
   'database': 'ekg3000',
 }
