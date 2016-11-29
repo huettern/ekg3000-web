@@ -24,5 +24,5 @@ cp server/*.php /var/www/ekg3000/public_html
 Add mysql user ekg3000
 
 ```sh
-mysql -u root - ekg3000 < server/config/ekg3000.sql
+mysql -u root -p ekg3000 < server/config/ekg3000.sql
 ```
