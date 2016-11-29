@@ -43,8 +43,11 @@ class Sampler:
 
 	def addSample(self, samplemsg):
 		for s in samplemsg:
-			self.samples.append(float(s))
-
+			print(s)
+			try:
+				self.samples.append(float(s))
+			except ValueError as e:
+        			print ("error ",e," with value ",s)
 	def writeJson(self):
 		obj = ekgJson()
 		obj.device = self.device
@@ -145,7 +148,7 @@ def uptime_coro():
 
 if __name__ == '__main__':
 	formatter = "[%(asctime)s] {%(filename)s:%(lineno)d} %(levelname)s - %(message)s"
-	logging.basicConfig(filename='ekg3000.log', level=logging.INFO, format=formatter)
+	logging.basicConfig(filename='ekg3000.log', level=logging.DEBUG, format=formatter)
 	asyncio.get_event_loop().run_until_complete(uptime_coro())
 
 
