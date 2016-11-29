@@ -40,8 +40,13 @@ sudo apt-get insall python3-pip
 pip3 install hbmqtt
 ```
 
-Run server with
+Run server as deamon
 ```
-python3.5 server/server.py
+#python3.5 server/server.py
+sudo cp server/config/ekg3000initd.conf /etc/init.d/ekg3000
+sudo chmod +x /etc/init.d/ekg3000 
+sudo update-rc.d ekg3000 defaults
+sudo service ekg3000 status
+sudo service ekg3000 start
 ```
 
