@@ -10,8 +10,8 @@ Requires apache and php.
 | server | server sources |
 
 
-** Installation
-```
+##Installation
+```sh
 sudo apt-add-repository ppa:mosquitto-dev/mosquitto-ppa
 sudo apt install mosquitto
 mosquitto -deamon -verbose
@@ -23,6 +23,6 @@ cp server/*.php /var/www/ekg3000/public_html
 
 Add mysql user ekg3000
 
-```
+```sh
 mysql -u root - ekg3000 < server/config/ekg3000.sql
 ```
