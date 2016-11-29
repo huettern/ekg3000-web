@@ -26,3 +26,7 @@ Add mysql user ekg3000
 ```sh
 mysql -u root -p ekg3000 < server/config/ekg3000.sql
 ```
+
+##Python
+
+Install pythom mysql connector https://pypi.python.org/pypi/mysql-connector-python/2.0.4
