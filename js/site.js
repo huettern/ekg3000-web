@@ -25,12 +25,14 @@ function plot(jsonF) {
     // split data in 10sec parts
     t = 10; // 10 sec
     var off = t * offset * jsonF.samplerate;
-    for (var i = 0; i < (t*jsonF.samplerate); i++) {
+    var i = (off == 0 ? 1 : 0);
+    for (; i < (t*jsonF.samplerate); i++) {
         points.push({
             "x": (i + off)*ekgTime,
             "y": jsonF.data[i + off]
         });
     }
+    console.log(points)
     // for (var k = 0; k < ((jsonF.nsamples/jsonF.samplerate)/10); k++) {
     //     for (var i = 0; i < jsonF.nsamples; i++) {
     //         points.push({
@@ -41,21 +43,30 @@ function plot(jsonF) {
     // }
 
     // Enable and disable next & prev buttons
-    if(off >= (jsonF.nsamples/2)) {
+    if((t * (offset+1) * jsonF.samplerate) >= jsonF.nsamples) {
         document.getElementById("btNext").disabled = true;
         document.getElementById("btPrev").disabled = false;
     }
     if(off <= 0) {
-        document.getElementById("btNext").disabled = false;
-        document.getElementById("btPrev").disabled = true;
+        if((t * (offset+1) * jsonF.samplerate) >= jsonF.nsamples) {
+            document.getElementById("btNext").disabled = true;
+            document.getElementById("btPrev").disabled = true;
+        }
+        else {
+            document.getElementById("btNext").disabled = false;
+            document.getElementById("btPrev").disabled = true; 
+        }
+
     }
 
-
+    //console.log(Math.max.apply(null, (jsonF.data.shift())));
     // instantiate our graph!
     var graph = new Rickshaw.Graph({
         element: document.getElementById("chart"),
         height: 500,
         renderer: 'line',
+        min: Math.min.apply(null, jsonF.data),
+        max: Math.max.apply(null, jsonF.data),
         series: [{
             color: 'steelblue',
             data: points,
@@ -152,6 +163,7 @@ $(document).ready(function() {
 
             success: function(response) {
                 jsonFile = JSON.parse(response);
+                console.log(jsonFile);
                 plot(jsonFile);
             }
         });
