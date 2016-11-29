@@ -1,6 +1,11 @@
 <?php
-$dev = ($_GET['dev']);
-$dev_id = ($_GET['dev_id']);
+
+if(isset($_GET['dev'])) {
+	$dev = ($_GET['dev']);
+}
+if(isset($_GET['dev_id'])) {
+	$dev_id = ($_GET['dev_id']);
+}
 
 $con = mysqli_connect('localhost','ekg3000','n4O13YsX1wn686hk','ekg3000');
 if (!$con) {
