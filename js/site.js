@@ -1,26 +1,57 @@
+
+var jsonFile;
+var offset = 0;
+
 function ddDevicesSelected(text) {
     var btn = document.getElementById("bDevices");
     // btn.value(text);
     $('#bDevicesText').text(text);
 }
 
+/**
+ * Plots new graph
+ *
+ * @param      {json}  jsonF   Json object
+ */
 function plot(jsonF) {
-    /*    console.log(jsonF);
-        console.log(jsonF.data);*/
+    // delete the graph datas
     $('#chart').empty();
+    $('#slider').empty();
+
     // set up our data series
     var points = [];
+    var ekgTime = 1/jsonF.samplerate
 
-    for (var i = 0; i < jsonF.nsamples; i++) {
+    // split data in 10sec parts
+    t = 10; // 10 sec
+    var off = t * offset * jsonF.samplerate;
+    for (var i = 0; i < (t*jsonF.samplerate); i++) {
         points.push({
-            "x": i,
-            "y": jsonF.data[i]
+            "x": (i + off)*ekgTime,
+            "y": jsonF.data[i + off]
         });
     }
+    // for (var k = 0; k < ((jsonF.nsamples/jsonF.samplerate)/10); k++) {
+    //     for (var i = 0; i < jsonF.nsamples; i++) {
+    //         points.push({
+    //             "x": i*ekgTime,
+    //             "y": jsonF.data[i]
+    //         });
+    //     }
+    // }
 
-    console.log(points);
+    // Enable and disable next & prev buttons
+    if(off >= (jsonF.nsamples/2)) {
+        document.getElementById("btNext").disabled = true;
+        document.getElementById("btPrev").disabled = false;
+    }
+    if(off <= 0) {
+        document.getElementById("btNext").disabled = false;
+        document.getElementById("btPrev").disabled = true;
+    }
+
+
     // instantiate our graph!
-
     var graph = new Rickshaw.Graph({
         element: document.getElementById("chart"),
         height: 500,
@@ -28,20 +59,19 @@ function plot(jsonF) {
         series: [{
             color: 'steelblue',
             data: points,
-            // name: 'New York',
             strokeWidth: 1,
             opacity: 1
         }]
     });
 
-    // var slider = new Rickshaw.Graph.RangeSlider.Preview({
-    //     graph: graph,
-    //     element: document.querySelector('#slider')
-    // });
-    var slider = new Rickshaw.Graph.RangeSlider({
+    var slider = new Rickshaw.Graph.RangeSlider.Preview({
         graph: graph,
         element: document.querySelector('#slider')
     });
+    // var slider = new Rickshaw.Graph.RangeSlider({
+    //     graph: graph,
+    //     element: document.querySelector('#slider')
+    // });
 
     graph.render();
 
@@ -51,10 +81,6 @@ function plot(jsonF) {
     xAxis.render();
 }
 
-// function removegraph()
-// {
-//     $("#chart").remove() ;
-// }
 
 $(document).ready(function() {
     /* is executed after page is loaded */
@@ -67,28 +93,16 @@ $(document).ready(function() {
             address: url
         },
         success: function(response) {
-            // response now contains full HTML of google.com
             var res = JSON.parse(response);
 
             var list = document.getElementById("#ddDevices");
 
             for (i = 0; i < res.length; i++) {
-                var opt = res[i].name;
-                //  var sel = document.createElement("select");
-                //li.setAttribute("id", "ddLi" + res[i].id);   
+                var opt = res[i].name; 
                 $("#ddDevices").append($('<option>', {
                         value: res[i].id,
                         text: res[i].name
                     }))
-                    // sel.setAttribute("class", "ddLi"); 
-                    // sel.setAttribute("value", res[i].id)  
-                    //var link = document.createElement("a");          
-                    // var text = document.createTextNode(opt);
-                    //link.appendChild(text);
-                    //link.href = "#";
-                    //li.appendChild(link);
-                    // sel.appendChild(opt);
-                    //list.appendChild(sel);
             }
         }
     });
@@ -106,7 +120,6 @@ $(document).ready(function() {
                 address: url
             },
             success: function(response) {
-                // response now contains full HTML of google.com
                 var res = JSON.parse(response);
 
                 var list = document.getElementById("ddFiles");
@@ -117,7 +130,6 @@ $(document).ready(function() {
                     var opt = res[i].name;
                     $("#ddFiles").append($('<option>', {
                         value: res[i].id,
-                        // text: res[i].time + '  |  ' + (res[i].file).split("/").pop() 
                         text: res[i].time
                     }));
                 }
@@ -127,7 +139,7 @@ $(document).ready(function() {
 
 
     $("#btLoad").click(function() {
-        console.log("btn");
+        offset = 0;
         var sFileID = $("#ddFiles option:selected").val();
         var url = 'http://noahhome.selfhost.bz:4280/getfile.php' + '?file_id=' + sFileID;
 
@@ -139,12 +151,22 @@ $(document).ready(function() {
             },
 
             success: function(response) {
-                // response now contains full HTML of google.com
-                var jsonFile = JSON.parse(response);
+                jsonFile = JSON.parse(response);
                 plot(jsonFile);
             }
         });
 
+    });
+
+    $("#btNext").click(function() {
+        offset++;
+        plot(jsonFile);
+    });
+
+
+    $("#btPrev").click(function() {
+        offset--;
+        plot(jsonFile);
     });
 
 });

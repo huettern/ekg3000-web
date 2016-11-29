@@ -28,7 +28,7 @@
             <div class="col-sm-9">
                <h1>EKG3000</h1>
             </div>
-            <div class="col-xs-2">
+            <div class="col-sm-2">
                <button type="button" class="btn btn-link pull-right"><a href = "logout.php">Sign Out</a></button>
             </div>
          </div>
@@ -59,15 +59,20 @@
             </div>
          </div>
 
+         <div class="row">
+            <div class="col-sm-5">
+               <button type="button" class="btn btn-primary btn-block" id="btPrev">Previous</button>
+            </div>
+            <div class="col-sm-1">   
+            </div>
+            <div class="col-sm-5">
+               <button type="button" class="btn btn-primary btn-block" id="btNext">Next</button>
+            </div>
+         </div>
 
          <!-- Plot -->
          <div class="row">
-         <div class="col-sm-1">
-            <button type="button" class="btn btn-default">
-               <span class="glyphicon glyphicon-menu-right"></span>
-            </button>
-         </div>
-            <div class="col-sm-10">
+            <div class="col-sm-11">
               <div id="chart"></div>
               <div id="slider"></div>
             </div>
