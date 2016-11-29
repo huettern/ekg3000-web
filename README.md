@@ -40,3 +40,8 @@ sudo apt-get insall python3-pip
 pip3 install hbmqtt
 ```
 
+Run server with
+```
+python3.5 server/server.py
+```
+
