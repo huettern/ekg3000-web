@@ -1,7 +1,7 @@
 <?php
 $file_id = ($_GET['file_id']);
 
-$con = mysqli_connect('localhost','ekg3000','ekg3000','ekg3000');
+$con = mysqli_connect('localhost','ekg3000','n4O13YsX1wn686hk','ekg3000');
 if (!$con) {
     die('Could not connect: ' . mysqli_error($con));
 }
