@@ -58,7 +58,7 @@ function plot(jsonF) {
 
 $(document).ready(function() {
     /* is executed after page is loaded */
-    var url = 'http://noahhome.selfhost.bz:8080/ekg3000/getdevices.php';
+    var url = 'http://noahhome.selfhost.bz:4280/getdevices.php';
 
     $.ajax({
         url: 'proxy.php',
@@ -97,7 +97,7 @@ $(document).ready(function() {
         var sDevName = $("#ddDevices option:selected").text();
         var sDevID = $("#ddDevices option:selected").val();
 
-        var url = 'http://noahhome.selfhost.bz:8080/ekg3000/getfilelist.php' + '?dev_id=' + sDevID;
+        var url = 'http://noahhome.selfhost.bz:4280/getfilelist.php' + '?dev_id=' + sDevID;
 
         $.ajax({
             url: 'proxy.php',
@@ -129,7 +129,7 @@ $(document).ready(function() {
     $("#btLoad").click(function() {
         console.log("btn");
         var sFileID = $("#ddFiles option:selected").val();
-        var url = 'http://noahhome.selfhost.bz:8080/ekg3000/getfile.php' + '?file_id=' + sFileID;
+        var url = 'http://noahhome.selfhost.bz:4280/getfile.php' + '?file_id=' + sFileID;
 
         $.ajax({
             url: 'proxy.php',
