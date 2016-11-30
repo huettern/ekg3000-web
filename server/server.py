@@ -12,13 +12,13 @@ from hbmqtt.client import MQTTClient, ConnectException, ClientException
 from hbmqtt.mqtt.constants import *
 
 
-# url = 'mqtt://localhost:1883/';
-# topic = 'ekg3000/emulator'
-# fileroot = '/home/ekg3000/files'
+url = 'mqtt://localhost:1883/';
+topic = 'ekg3000/emulator'
+fileroot = '/home/ekg3000/files'
 
-url = 'mqtt://46.126.176.250:4283/';
-topic = 'ekg3000/emulator';
-fileroot = '/Users/noah/tmp/files';
+# url = 'mqtt://46.126.176.250:4283/';
+# topic = 'ekg3000/emulator';
+# fileroot = '/Users/noah/tmp/files';
 
 
 mysqlconfig = {
