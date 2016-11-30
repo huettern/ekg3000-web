@@ -120,7 +120,7 @@ def getSamplerByDevice(devname):
 def removeSamplerByDevice(devname):
 	for smp in samplers:
 		if smp.device == devname:
-			smp = None
+			samplers.remove(smp)
 
 def process_packet(packet):
 	# extract topic
@@ -134,6 +134,7 @@ def process_packet(packet):
 	if data.find("sstart") == 0:
 		# sample start sent, create new sampler
 		print(">> sstart received from %s" % (device))
+		removeSamplerByDevice(device)
 		smp = Sampler()
 		smp.device = device
 		fs = [int(s) for s in data.split(" ") if s.isdigit()][0]
