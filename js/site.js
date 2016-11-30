@@ -1,5 +1,5 @@
 
-var jsonFile;
+var jsonFile, graph;
 var offset = 0;
 
 function ddDevicesSelected(text) {
@@ -27,12 +27,20 @@ function plot(jsonF) {
     var off = t * offset * jsonF.samplerate;
     var i = (off == 0 ? 1 : 0);
     for (; i < (t*jsonF.samplerate); i++) {
-        points.push({
-            "x": (i + off)*ekgTime,
-            "y": jsonF.data[i + off]
-        });
+        if ((i+off) == jsonF.nsamples) {
+            points.push({
+                "x": (i + off)*ekgTime,
+                "y": null
+            }); 
+        } 
+        else {
+            points.push({
+                "x": (i + off)*ekgTime,
+                "y": jsonF.data[i + off]
+            }); 
+        }
+
     }
-    console.log(points)
     // for (var k = 0; k < ((jsonF.nsamples/jsonF.samplerate)/10); k++) {
     //     for (var i = 0; i < jsonF.nsamples; i++) {
     //         points.push({
@@ -43,10 +51,6 @@ function plot(jsonF) {
     // }
 
     // Enable and disable next & prev buttons
-    if((t * (offset+1) * jsonF.samplerate) >= jsonF.nsamples) {
-        document.getElementById("btNext").disabled = true;
-        document.getElementById("btPrev").disabled = false;
-    }
     if(off <= 0) {
         if((t * (offset+1) * jsonF.samplerate) >= jsonF.nsamples) {
             document.getElementById("btNext").disabled = true;
@@ -56,14 +60,21 @@ function plot(jsonF) {
             document.getElementById("btNext").disabled = false;
             document.getElementById("btPrev").disabled = true; 
         }
-
+    }
+    else {
+        if((t * (offset+1) * jsonF.samplerate) >= jsonF.nsamples) {
+            document.getElementById("btNext").disabled = true;
+            document.getElementById("btPrev").disabled = false;
+        }
+        else {
+            document.getElementById("btNext").disabled = false;
+            document.getElementById("btPrev").disabled = false;
+        }
     }
 
-    //console.log(Math.max.apply(null, (jsonF.data.shift())));
     // instantiate our graph!
-    var graph = new Rickshaw.Graph({
+    graph = new Rickshaw.Graph({
         element: document.getElementById("chart"),
-        height: 500,
         renderer: 'line',
         min: Math.min.apply(null, jsonF.data),
         max: Math.max.apply(null, jsonF.data),
@@ -135,7 +146,7 @@ $(document).ready(function() {
 
                 var list = document.getElementById("ddFiles");
 
-                $('#ddFiles').empty().append('<option disabled selected value>Select..</option>');
+                $('#ddFiles').empty().append('<option disabled selected value> File Select.. </option>');
 
                 for (i = 0; i < res.length; i++) {
                     var opt = res[i].name;
@@ -163,7 +174,8 @@ $(document).ready(function() {
 
             success: function(response) {
                 jsonFile = JSON.parse(response);
-                console.log(jsonFile);
+                jsonFile.data = jsonFile.data.filter(Boolean);
+                jsonFile.nsamples = jsonFile.data.length;    
                 plot(jsonFile);
             }
         });
@@ -181,4 +193,11 @@ $(document).ready(function() {
         plot(jsonFile);
     });
 
+    $(window).on('resize', function(){
+        graph.configure({
+            width: document.getElementById("chartContainer").offsetWidth,
+            height: document.getElementById("chartContainer").offsetHeight
+        });
+        graph.render();
+    });
 });

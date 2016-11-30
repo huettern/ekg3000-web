@@ -38,21 +38,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <meta name="viewport" content="width=device-width, initial-scale=1">
 
       <link rel="stylesheet" href="css/bootstrap.min.css">
-      <link type="text/css" rel="stylesheet" href="css/jquery-ui.min.css">
       <link type="text/css" rel="stylesheet" href="css/login_bootsnipp.css">
-      <link type="text/css" rel="stylesheet" href="css/jquery-ui.min.css">
 
       <script src="js/vendor/jquery.js"></script>
       <script src="js/vendor/jquery-ui.min.js"></script>
       <script src="js/vendor/bootstrap.min.js"></script>
-      
+
+      <link type="text/css" rel="stylesheet" href="css/jquery-ui.min.css">
+
    </head>
    
    <body bgcolor = "#FFFFFF">
 
       <div class="container">
           <div class="row">
-              <div class="col-md-offset-5 col-md-3">
+            <div class="col-md-8"></div>
+              <div class="col-md-3">
                   <div class="form-login">
                   <h4>Welcome to EKG3000</h4>
 
@@ -67,9 +68,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </span>
                      </div>
                   </form>
+                  <div style = "font-size:11px; color:#cc0000; margin-top:10px"><?php echo $error; ?></div>
                   </div>
               </div>
-          </div
+          </div>
       </div>
 
    </body>
