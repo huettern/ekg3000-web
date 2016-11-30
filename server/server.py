@@ -12,15 +12,27 @@ from hbmqtt.client import MQTTClient, ConnectException, ClientException
 from hbmqtt.mqtt.constants import *
 
 
-url = 'mqtt://localhost:1883/';
-topic = 'ekg3000/emulator'
-fileroot = '/home/ekg3000/files'
+# url = 'mqtt://localhost:1883/';
+# topic = 'ekg3000/emulator'
+# fileroot = '/home/ekg3000/files'
 
+url = 'mqtt://46.126.176.250:4283/';
+topic = 'ekg3000/emulator';
+fileroot = '/Users/noah/tmp/files';
+
+
+# mysqlconfig = {
+#   'user': 'ekg3000',
+#   'password': 'n4O13YsX1wn686hk',
+#   'host': '127.0.0.1',
+#   'database': 'ekg3000',
+# }
 mysqlconfig = {
   'user': 'ekg3000',
   'password': 'n4O13YsX1wn686hk',
-  'host': '127.0.0.1',
+  'host': '46.126.176.250',
   'database': 'ekg3000',
+  'port':13306
 }
 
 
@@ -43,11 +55,13 @@ class Sampler:
 
 	def addSample(self, samplemsg):
 		for s in samplemsg:
-			print(s)
+			# print(s)
 			try:
 				self.samples.append(float(s))
 			except ValueError as e:
-        			print ("error ",e," with value ",s)
+				pass
+        		# print ("error ",e," with value ",s)
+        			
 	def writeJson(self):
 		obj = ekgJson()
 		obj.device = self.device
@@ -96,6 +110,7 @@ def getSamplerByDevice(devname):
 	for smp in samplers:
 		if smp.device == devname:
 			return smp
+	return 0
 
 
 
@@ -106,11 +121,11 @@ def process_packet(packet):
 	# extract data
 	data = str(packet.payload.data)
 	data = (re.findall(r"'(.*?)'", data, re.DOTALL))[0]
-	print(data)
+	# print(data)
 	# decide what was sent
 	if data.find("sstart") == 0:
 		# sample start sent, create new sampler
-		print("sstart received")
+		print(">> sstart received from %s" % (device))
 		smp = Sampler()
 		smp.device = device
 		fs = [int(s) for s in data.split(" ") if s.isdigit()][0]
@@ -118,13 +133,20 @@ def process_packet(packet):
 		samplers.append(smp)
 	if data.find("ssample") == 0:
 		# samples sent
-		print("samples received")
-		getSamplerByDevice(device).addSample(data.split(" ")[1:])
+		try:
+			print(">> samples received from %s:" % (device), end="")
+			getSamplerByDevice(device).addSample(data.split(" ")[1:])
+			print("%d" % (len(getSamplerByDevice(device).samples)), end="\r", flush=True)
+		except:
+			print("[ERROR] sstart missing from device %s" % (device))
 	if data.find("sstop") == 0:
 		# sample end sent
-		print("sstop received")
-		getSamplerByDevice(device).writeJson()
-		getSamplerByDevice(device).writeDB()
+		try:
+			print("\r\n>> sstop received from %s samples: %d" % (device,len(getSamplerByDevice(device).samples)))
+			getSamplerByDevice(device).writeJson()
+			getSamplerByDevice(device).writeDB()
+		except:
+			print("[ERROR] sstart missing from device %s" % (device))
 
 @asyncio.coroutine
 def uptime_coro():
@@ -137,7 +159,7 @@ def uptime_coro():
 		while True:
 			message = yield from C.deliver_message()
 			packet = message.publish_packet
-			print("%s => %s" % (packet.variable_header.topic_name, str(packet.payload.data)))
+			#print("%s => %s" % (packet.variable_header.topic_name, str(packet.payload.data)))
 			process_packet(packet)
 		yield from C.unsubscribe('ekg3000/#')
 		logger.info("UnSubscribed")
