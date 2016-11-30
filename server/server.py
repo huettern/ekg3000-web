@@ -21,19 +21,19 @@ topic = 'ekg3000/emulator';
 fileroot = '/Users/noah/tmp/files';
 
 
-# mysqlconfig = {
-#   'user': 'ekg3000',
-#   'password': 'n4O13YsX1wn686hk',
-#   'host': '127.0.0.1',
-#   'database': 'ekg3000',
-# }
 mysqlconfig = {
   'user': 'ekg3000',
   'password': 'n4O13YsX1wn686hk',
-  'host': '46.126.176.250',
+  'host': '127.0.0.1',
   'database': 'ekg3000',
-  'port':13306
 }
+# mysqlconfig = {
+#   'user': 'ekg3000',
+#   'password': 'n4O13YsX1wn686hk',
+#   'host': '46.126.176.250',
+#   'database': 'ekg3000',
+#   'port':13306
+# }
 
 
 logger = logging.getLogger(__name__)
