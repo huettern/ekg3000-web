@@ -53,6 +53,11 @@ class Sampler:
 	samples = []
 	samplerate = 0
 
+	def __init__(self):
+		device = ''
+		samples = []
+		samplerate = 0
+
 	def addSample(self, samplemsg):
 		for s in samplemsg:
 			# print(s)
@@ -112,7 +117,10 @@ def getSamplerByDevice(devname):
 			return smp
 	return 0
 
-
+def removeSamplerByDevice(devname):
+	for smp in samplers:
+		if smp.device == devname:
+			smp = None
 
 def process_packet(packet):
 	# extract topic
@@ -139,6 +147,7 @@ def process_packet(packet):
 			print("%d" % (len(getSamplerByDevice(device).samples)), end="\r", flush=True)
 		except:
 			print("[ERROR] sstart missing from device %s" % (device))
+			removeSamplerByDevice(device)
 	if data.find("sstop") == 0:
 		# sample end sent
 		try:
@@ -147,6 +156,7 @@ def process_packet(packet):
 			getSamplerByDevice(device).writeDB()
 		except:
 			print("[ERROR] sstart missing from device %s" % (device))
+		removeSamplerByDevice(device)
 
 @asyncio.coroutine
 def uptime_coro():
