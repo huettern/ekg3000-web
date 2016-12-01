@@ -41,14 +41,6 @@ function plot(jsonF) {
         }
 
     }
-    // for (var k = 0; k < ((jsonF.nsamples/jsonF.samplerate)/10); k++) {
-    //     for (var i = 0; i < jsonF.nsamples; i++) {
-    //         points.push({
-    //             "x": i*ekgTime,
-    //             "y": jsonF.data[i]
-    //         });
-    //     }
-    // }
 
     // Enable and disable next & prev buttons
     if(off <= 0) {
@@ -101,64 +93,24 @@ function plot(jsonF) {
         graph: graph
     });
     xAxis.render();
+
+    var yAxis = new Rickshaw.Graph.Axis.Y({
+        graph: graph,
+    });
+    yAxis.render();
 }
 
 
 $(document).ready(function() {
     /* is executed after page is loaded */
-    var url = 'http://noahhome.selfhost.bz:4280/getdevices.php';
-
-    $.ajax({
-        url: 'proxy.php',
-        type: 'GET',
-        data: {
-            address: url
-        },
-        success: function(response) {
-            var res = JSON.parse(response);
-
-            var list = document.getElementById("#ddDevices");
-
-            for (i = 0; i < res.length; i++) {
-                var opt = res[i].name; 
-                $("#ddDevices").append($('<option>', {
-                        value: res[i].id,
-                        text: res[i].name
-                    }))
-            }
-        }
-    });
+    
+    ajaxDevice();
+    setInterval(ajaxDevice,3000);
 
     $("#ddDevices").change(function() {
-        var sDevName = $("#ddDevices option:selected").text();
-        var sDevID = $("#ddDevices option:selected").val();
-
-        var url = 'http://noahhome.selfhost.bz:4280/getfilelist.php' + '?dev_id=' + sDevID;
-
-        $.ajax({
-            url: 'proxy.php',
-            type: 'GET',
-            data: {
-                address: url
-            },
-            success: function(response) {
-                var res = JSON.parse(response);
-
-                var list = document.getElementById("ddFiles");
-
-                $('#ddFiles').empty().append('<option disabled selected value> File Select.. </option>');
-
-                for (i = 0; i < res.length; i++) {
-                    var opt = res[i].name;
-                    $("#ddFiles").append($('<option>', {
-                        value: res[i].id,
-                        text: res[i].time
-                    }));
-                }
-            }
-        });
+        ajaxFile();
+        setInterval(ajaxFile,3000);
     });
-
 
     $("#btLoad").click(function() {
         offset = 0;
@@ -192,6 +144,70 @@ $(document).ready(function() {
         offset--;
         plot(jsonFile);
     });
+
+    function ajaxDevice() {
+        var url = 'http://noahhome.selfhost.bz:4280/getdevices.php';
+
+        $.ajax({
+            url: 'proxy.php',
+            type: 'GET',
+            data: {
+                address: url
+            },
+            success: function(response) {
+                var res = JSON.parse(response);
+
+                var list = document.getElementById("#ddDevices");
+
+                var e = ddDevices.selectedIndex;
+                $('#ddDevices').empty().append('<option disabled selected value> Device Select.. </option>');
+
+                for (i = 0; i < res.length; i++) {
+                    var opt = res[i].name; 
+                    $("#ddDevices").append($('<option>', {
+                            value: res[i].id,
+                            text: res[i].name
+                        }))
+                }
+
+                ddDevices.selectedIndex= e;
+            }
+        });
+    }
+
+    function ajaxFile() {
+        var sDevName = $("#ddDevices option:selected").text();
+        var sDevID = $("#ddDevices option:selected").val();
+
+        var url = 'http://noahhome.selfhost.bz:4280/getfilelist.php' + '?dev_id=' + sDevID;
+
+        $.ajax({
+            url: 'proxy.php',
+            type: 'GET',
+            data: {
+                address: url
+            },
+            success: function(response) {
+                var res = JSON.parse(response);
+
+                var list = document.getElementById("ddFiles");
+
+                var e = ddFiles.selectedIndex;
+
+                $('#ddFiles').empty().append('<option disabled selected value> File Select.. </option>');
+
+                for (i = 0; i < res.length; i++) {
+                    var opt = res[i].name;
+                    $("#ddFiles").append($('<option>', {
+                        value: res[i].id,
+                        text: res[i].time
+                    }));
+                }
+
+                ddFiles.selectedIndex= e;
+            }
+        });
+    }
 
     $(window).on('resize', function(){
         graph.configure({

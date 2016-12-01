@@ -1689,7 +1689,8 @@ Rickshaw.Graph.Axis.Y = Rickshaw.Class.create( {
 
 	_drawAxis: function(scale) {
 		var axis = d3.svg.axis().scale(scale).orient(this.orientation);
-		axis.tickFormat(this.tickFormat);
+		//axis.tickFormat(this.tickFormat);
+		axis.tickFormat(""); //no labels on Y-Axis
 		if (this.tickValues) axis.tickValues(this.tickValues);
 
 		if (this.orientation == 'left') {

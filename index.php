@@ -53,7 +53,9 @@
             </div>
 
             <div class="col-md-2">
-               <button type="button" class="btn btn-primary btn-block" id="btLoad">Load File</button>
+               <button type="button" class="btn btn-primary btn-block" id="btLoad">Load File
+                  <span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span>
+               </button>
             </div>
          </div>
 
@@ -73,13 +75,10 @@
             <div class="col-md-1">
                <div class="panel-default">
                   <div class="panel-body">
-                     <div style="display: block; width: 50px; height: 650px;">
-                        <button type="button" class="btn btn-primary btn-block text-left" style="display: block; width: 100%; height:100%"; id="btPrev">
+                     <div style="display: block; width: 100%; height: 640px;">
+                        <button type="button" class="btn btn-primary center" style="display: block; width: 100%; height:100%"; id="btPrev">
                            <span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>
                         </button>
-<!--                         <a class="btn btn-block btn-primary" style="display: block; width: 100%; height:100%;>
-                           <span class="glyphicon glyphicon-share" style="font-size: 300px;">LIRA</span>
-                        </a> -->
                      </div>
                   </div>
                </div>
@@ -103,8 +102,8 @@
             <div class="col-md-1">
                <div class="panel-default">
                   <div class="panel-body">
-                     <div style="display: block; width: 50px; height: 650px;">
-                        <button type="button" class="btn btn-primary btn-block pull-right" style="display: block; width: 100%; height:100%"; id="btNext">
+                     <div style="display: center-block; width: 100%; height: 640px;">
+                        <button type="button" class="btn btn-primary center" style="display: block; width: 100%; height:100%"; id="btNext">
                            <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
                            </button>
 <!--                         <a class="btn btn-block btn-primary" style="display: block; width: 100%; height:100%;>
