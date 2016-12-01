@@ -16,17 +16,16 @@ url = 'mqtt://localhost:1883/';
 topic = 'ekg3000/emulator'
 fileroot = '/home/ekg3000/files'
 
-# url = 'mqtt://46.126.176.250:4283/';
-# topic = 'ekg3000/emulator';
-# fileroot = '/Users/noah/tmp/files';
-
-
 mysqlconfig = {
   'user': 'ekg3000',
   'password': 'n4O13YsX1wn686hk',
   'host': '127.0.0.1',
   'database': 'ekg3000',
 }
+
+# url = 'mqtt://46.126.176.250:4283/';
+# topic = 'ekg3000/emulator';
+# fileroot = '/Users/noah/tmp/files';
 # mysqlconfig = {
 #   'user': 'ekg3000',
 #   'password': 'n4O13YsX1wn686hk',
@@ -54,9 +53,9 @@ class Sampler:
 	samplerate = 0
 
 	def __init__(self):
-		device = ''
-		samples = []
-		samplerate = 0
+		self.device = ''
+		self.samples = []
+		self.samplerate = 0
 
 	def addSample(self, samplemsg):
 		for s in samplemsg:
@@ -120,7 +119,15 @@ def getSamplerByDevice(devname):
 def removeSamplerByDevice(devname):
 	for smp in samplers:
 		if smp.device == devname:
-			samplers.remove(smp)
+			print("removing sampler before: ")
+			print(smp)
+			# samplers.remove(smp)
+			try:
+				del samplers[samplers.index(smp)]
+			except:
+				print("failed to remove sampler from list")
+			print("after")
+			print(smp)
 
 def process_packet(packet):
 	# extract topic
