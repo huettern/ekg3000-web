@@ -37,14 +37,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <link rel="stylesheet" href="css/bootstrap.min.css">
+      <link rel="stylesheet" href="css/bootstrap.css">
       <link type="text/css" rel="stylesheet" href="css/login_bootsnipp.css">
+      <link type="text/css" rel="stylesheet" href="css/jquery-ui.min.css">
 
       <script src="js/vendor/jquery.js"></script>
       <script src="js/vendor/jquery-ui.min.js"></script>
-      <script src="js/vendor/bootstrap.min.js"></script>
-
-      <link type="text/css" rel="stylesheet" href="css/jquery-ui.min.css">
+      <script src="js/vendor/bootstrap.js"></script>
 
    </head>
    

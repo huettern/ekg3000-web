@@ -8,19 +8,16 @@
       <title>EKG 3000</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-<!--       <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet"> -->
-      <link rel="stylesheet" href="css/bootstrap.min.css">
-      <script src="js/vendor/jquery.js"></script>
-      <script src="js/vendor/jquery-ui.min.js"></script>
-<!--       <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> -->
-      <script src="js/vendor/bootstrap.min.js"></script>
 
+      <link rel="stylesheet" href="css/bootstrap.css">
       <link type="text/css" rel="stylesheet" href="css/rickshaw.css">
       <link type="text/css" rel="stylesheet" href="css/jquery-ui.min.css">
-      <script src="js/vendor/d3.v3.js"></script> 
-  <!--     <script src="js/vendor/d3.layout.min.js"></script>  -->
-      <script src="js/vendor/rickshaw.js"></script>
 
+      <script src="js/vendor/jquery.js"></script>
+      <script src="js/vendor/jquery-ui.min.js"></script>
+      <script src="js/vendor/bootstrap.js"></script>
+      <script src="js/vendor/d3.v3.js"></script> 
+      <script src="js/vendor/rickshaw.js"></script>
       <script src="js/site.js"></script>
    </head>
 
