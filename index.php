@@ -53,6 +53,11 @@
             </div>
 
             <div class="col-md-2">
+               <input type="text" class="form-control input-sm chat-input" id="timePeriode" placeholder="set graph time periode" />
+            </div>
+
+
+            <div class="col-md-2">
                <button type="button" class="btn btn-primary btn-block" id="btLoad">Load File
                   <span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span>
                </button>

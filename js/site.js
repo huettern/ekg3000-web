@@ -23,7 +23,14 @@ function plot(jsonF) {
     var ekgTime = 1/jsonF.samplerate
 
     // split data in 10sec parts
-    t = 10; // 10 sec
+    console.log(document.getElementById("timePeriode").value)
+    if (document.getElementById("timePeriode").value == 0) {
+        t = 10;
+    }
+    else {
+        t = document.getElementById("timePeriode").value;
+    }
+
     var off = t * offset * jsonF.samplerate;
     var i = (off == 0 ? 1 : 0);
     for (; i < (t*jsonF.samplerate); i++) {
