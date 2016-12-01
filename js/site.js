@@ -1,5 +1,5 @@
 
-var jsonFile, graph;
+var jsonFile, graph, slider;
 var offset = 0;
 
 function ddDevicesSelected(text) {
@@ -86,7 +86,7 @@ function plot(jsonF) {
         }]
     });
 
-    var slider = new Rickshaw.Graph.RangeSlider.Preview({
+    slider = new Rickshaw.Graph.RangeSlider.Preview({
         graph: graph,
         element: document.querySelector('#slider')
     });
@@ -195,8 +195,13 @@ $(document).ready(function() {
 
     $(window).on('resize', function(){
         graph.configure({
-            width: document.getElementById("chartContainer").offsetWidth,
-            height: document.getElementById("chartContainer").offsetHeight
+            width: document.getElementById("chartContainer").offsetWidth
+            // height: document.getElementById("chartContainer").offsetHeight
+        });
+        
+        slider.configure({
+            width: document.getElementById("sliderContainer").offsetWidth,
+            height: document.getElementById("sliderContainer").offsetHeight
         });
         graph.render();
     });
