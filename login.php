@@ -41,32 +41,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <html>
-   
    <head>
       <title>Login Page</title>
-
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-
       <link rel="stylesheet" href="css/bootstrap.css">
       <link type="text/css" rel="stylesheet" href="css/login_bootsnipp.css">
       <link type="text/css" rel="stylesheet" href="css/jquery-ui.min.css">
-
       <script src="js/vendor/jquery.js"></script>
       <script src="js/vendor/jquery-ui.min.js"></script>
       <script src="js/vendor/bootstrap.js"></script>
-
    </head>
-   
    <body bgcolor = "#FFFFFF">
-
       <div class="container">
-          <div class="row">
+         <div class="row">
             <div class="col-md-8"></div>
-              <div class="col-md-3">
-                  <div class="form-login">
+            <div class="col-md-3">
+               <div class="form-login">
                   <h4>Welcome to EKG3000</h4>
-
                   <form action="" method="post">
                      <input type="text" name="username" class="form-control input-sm chat-input" placeholder="username" />
                      </br>
@@ -74,15 +66,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                      </br>
                      <div class="wrapper">
                         <span  class="group-btn">
-                           <button type = "submit" value = "Submit" class="btn btn-primary btn-md">Login</button></br>
+                        <button type = "submit" value = "Submit" class="btn btn-primary btn-md">Login</button></br>
                         </span>
                      </div>
                   </form>
                   <div style = "font-size:11px; color:#cc0000; margin-top:10px"><?php echo $error; ?></div>
-                  </div>
-              </div>
-          </div>
+               </div>
+            </div>
+         </div>
       </div>
-
    </body>
 </html>
