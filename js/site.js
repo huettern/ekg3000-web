@@ -9,7 +9,7 @@
  * @version    1.0
  */
 
- 
+
 /**
  * Global Variables
  */
@@ -118,7 +118,6 @@ $(document).ready(function() {
                     "y": jsonF.data[i + off]
                 });
             }
-
         }
 
         // enable and disable next & prev buttons
