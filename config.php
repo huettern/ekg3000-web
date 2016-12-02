@@ -1,3 +1,14 @@
+<!--
+ * config.php
+ *
+ * config for database
+ *
+ * @author     Stocker Jan
+ * @Date       01.12.2016
+ * @copyright  FHNW 2016 (EKG3000)
+ * @version    1.0
+ -->
+
 <?php
    define('DB_SERVER', 'localhost');
    define('DB_USERNAME', 'ekg');
