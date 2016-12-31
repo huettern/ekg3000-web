@@ -46,6 +46,7 @@
          </div>
 
          <div class="row">
+            <div class="col-md-2"></div>
             <div class="col-md-3">
                <select class="btn btn-primary dropdown-toggle btn-block" type="button" data-toggle="dropdown" id="ddDevices">
                   <option disabled selected value> Device Select.. </option>
@@ -59,11 +60,11 @@
             <div class="col-md-2">
                <input type="text" class="form-control input-sm chat-input" id="timeRange" placeholder="Time Range" />
             </div>
-            <div class="col-md-2">
+<!--             <div class="col-md-2">
                <button type="button" class="btn btn-primary btn-block" id="btLoad">Load File
                <span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span>
                </button>
-            </div>
+            </div> -->
          </div>
          </br>
          

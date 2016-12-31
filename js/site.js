@@ -33,7 +33,29 @@ $(document).ready(function() {
         setInterval(ajaxFile, 3000);
     });
 
-    $("#btLoad").click(function() {
+    $("#ddFiles").change(function() {
+        offset = 0;
+        var sFileID = $("#ddFiles option:selected").val();
+        var url = 'http://noahhome.selfhost.bz:4280/getfile.php' + '?file_id=' + sFileID;
+
+        $.ajax({
+            url: 'proxy.php',
+            type: 'GET',
+            data: {
+                address: url
+            },
+
+            success: function(response) {
+                jsonFile = JSON.parse(response);
+                jsonFile.data = jsonFile.data.filter(Boolean);
+                jsonFile.nsamples = jsonFile.data.length;
+                plot(jsonFile);
+            }
+        });
+    });
+
+/*    $("#btLoad").click(function() {
+        console.log("OK");
         offset = 0;
         var sFileID = $("#ddFiles option:selected").val();
         var url = 'http://noahhome.selfhost.bz:4280/getfile.php' + '?file_id=' + sFileID;
@@ -53,7 +75,7 @@ $(document).ready(function() {
             }
         });
 
-    });
+    });*/
 
     $("#btNext").click(function() {
         offset++;
