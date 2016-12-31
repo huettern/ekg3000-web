@@ -30,23 +30,21 @@
       <script src="js/site.js"></script>
    </head>
    <body>
+      </br>
       <div class="container">
-         <div class="jumbotron">
-            <div class="row">
-               <div class="col-md-10">
-                  <h1>EKG3000</h1>
-               </div>
-               <div class="col-sm-2">
-                  <button type="button" class="btn btn-default btn-sm pull-right">
-                  <span class="glyphicon glyphicon-log-out"></span><a href = "logout.php"> Sign Out </a>
-                  </button>
-                  <!--                <button type="button" class="btn btn-link pull-right"><a href = "logout.php">Sign Out</a></button> -->
-               </div>
+         <div class="row">
+            <div class="col-md-10">
+               <h1>EKG3000</h1>
+            </div>
+            <div class="col-sm-2">
+               <button type="button" class="btn btn-default btn-sm pull-right">
+               <span class="glyphicon glyphicon-log-out"></span><a href = "logout.php"> Sign Out </a>
+               </button>
+               <!--                <button type="button" class="btn btn-link pull-right"><a href = "logout.php">Sign Out</a></button> -->
             </div>
          </div>
 
          <div class="row">
-            <div class="col-md-2"></div>
             <div class="col-md-3">
                <select class="btn btn-primary dropdown-toggle btn-block" type="button" data-toggle="dropdown" id="ddDevices">
                   <option disabled selected value> Device Select.. </option>
@@ -57,7 +55,7 @@
                   <option disabled selected value> File Select.. </option>
                </select>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-2 col-md-offset-4">
                <input type="text" class="form-control input-sm chat-input" id="timeRange" placeholder="Time Range" />
             </div>
 <!--             <div class="col-md-2">
