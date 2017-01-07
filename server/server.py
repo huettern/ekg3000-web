@@ -63,6 +63,7 @@ class Sampler:
 			try:
 				self.samples.append(float(s))
 			except ValueError as e:
+				print("addSample: Value error")
 				pass
         		# print ("error ",e," with value ",s)
         			
@@ -149,9 +150,11 @@ def process_packet(packet):
 		samplers.append(smp)
 	if data.find("ssample") == 0:
 		# samples sent
+		#print("ssample received")
 		try:
 			print(">> samples received from %s:" % (device), end="")
-			getSamplerByDevice(device).addSample(data.split(" ")[1:])
+			datacut = data[8:]
+			getSamplerByDevice(device).addSample(datacut.split("\\t"))
 			print("%d" % (len(getSamplerByDevice(device).samples)), end="\r", flush=True)
 		except:
 			print("[ERROR] sstart missing from device %s" % (device))
