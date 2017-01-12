@@ -40,7 +40,6 @@
                <button type="button" class="btn btn-default btn-sm pull-right">
                <span class="glyphicon glyphicon-log-out"></span><a href = "logout.php"> Sign Out </a>
                </button>
-               <!--                <button type="button" class="btn btn-link pull-right"><a href = "logout.php">Sign Out</a></button> -->
             </div>
          </div>
 
@@ -55,14 +54,12 @@
                   <option disabled selected value> File Select.. </option>
                </select>
             </div>
-            <div class="col-md-2 col-md-offset-4">
-               <input type="text" class="form-control input-sm chat-input" id="timeRange" placeholder="Time Range" />
+            <div class="col-md-2 col-md-offset-2 text-right">
+               <h4>Time Range</h4>  
             </div>
-<!--             <div class="col-md-2">
-               <button type="button" class="btn btn-primary btn-block" id="btLoad">Load File
-               <span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span>
-               </button>
-            </div> -->
+            <div class="col-md-2">
+               <input type="text" class="form-control input-sm chat-input" id="timeRange" value="10"/>
+            </div>
          </div>
          </br>
          

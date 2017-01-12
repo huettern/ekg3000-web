@@ -13,7 +13,7 @@
 /**
  * Global Variables
  */
-var jsonFile, graph, slider;
+var jsonFile, graph, slider, timeRange;
 var offset = 0,
     showbutton = 0;
 
@@ -22,6 +22,8 @@ var offset = 0,
  */
 $(document).ready(function() {
     /*  */
+
+    console.log();
     $("#btPrev").hide();
     $("#btNext").hide();
 
@@ -54,28 +56,6 @@ $(document).ready(function() {
         });
     });
 
-/*    $("#btLoad").click(function() {
-        console.log("OK");
-        offset = 0;
-        var sFileID = $("#ddFiles option:selected").val();
-        var url = 'http://noahhome.selfhost.bz:4280/getfile.php' + '?file_id=' + sFileID;
-
-        $.ajax({
-            url: 'proxy.php',
-            type: 'GET',
-            data: {
-                address: url
-            },
-
-            success: function(response) {
-                jsonFile = JSON.parse(response);
-                jsonFile.data = jsonFile.data.filter(Boolean);
-                jsonFile.nsamples = jsonFile.data.length;
-                plot(jsonFile);
-            }
-        });
-
-    });*/
 
     $("#btNext").click(function() {
         offset++;
@@ -90,16 +70,16 @@ $(document).ready(function() {
 
     $("#timeRange").on('keyup', function(e) {
         if (e.keyCode == 13) {
+            if (document.getElementById("timeRange").value == 0) {
+                timeRange = 10;
+                document.getElementById("timeRange").value = timeRange;
+            }
+
             plot(jsonFile);
         }
 
     });
 
-
-    /*function ddDevicesSelected(text) {
-        var btn = document.getElementById("bDevices");
-        $('#bDevicesText').text(text);
-    }*/
 
     /**
      * Plots new graph
@@ -121,14 +101,14 @@ $(document).ready(function() {
 
         // split data in ??sec parts. Default 10sec
         if (document.getElementById("timeRange").value == 0) {
-            t = 10;
+            timeRange = 10;
         } else {
-            t = document.getElementById("timeRange").value;
+            timeRange = document.getElementById("timeRange").value;
         }
 
-        var off = t * offset * jsonF.samplerate;
+        var off = timeRange * offset * jsonF.samplerate;
         var i = (off == 0 ? 1 : 0);
-        for (; i < (t * jsonF.samplerate); i++) {
+        for (; i < (timeRange * jsonF.samplerate); i++) {
             if ((i + off) == jsonF.nsamples) {
                 points.push({
                     "x": (i + off) * ekgTime,
@@ -144,7 +124,7 @@ $(document).ready(function() {
 
         // enable and disable next & prev buttons
         if (off <= 0) {
-            if ((t * (offset + 1) * jsonF.samplerate) >= jsonF.nsamples) {
+            if ((timeRange * (offset + 1) * jsonF.samplerate) >= jsonF.nsamples) {
                 document.getElementById("btNext").disabled = true;
                 document.getElementById("btPrev").disabled = true;
             } else {
@@ -152,7 +132,7 @@ $(document).ready(function() {
                 document.getElementById("btPrev").disabled = true;
             }
         } else {
-            if ((t * (offset + 1) * jsonF.samplerate) >= jsonF.nsamples) {
+            if ((timeRange * (offset + 1) * jsonF.samplerate) >= jsonF.nsamples) {
                 document.getElementById("btNext").disabled = true;
                 document.getElementById("btPrev").disabled = false;
             } else {
@@ -179,10 +159,6 @@ $(document).ready(function() {
             graph: graph,
             element: document.querySelector('#slider')
         });
-        // var slider = new Rickshaw.Graph.RangeSlider({
-        //     graph: graph,
-        //     element: document.querySelector('#slider')
-        // });
 
         graph.render();
 
@@ -273,7 +249,6 @@ $(document).ready(function() {
     $(window).on('resize', function() {
         graph.configure({
             width: document.getElementById("chartContainer").offsetWidth
-                // height: document.getElementById("chartContainer").offsetHeight
         });
 
         slider.configure({
