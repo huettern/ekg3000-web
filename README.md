@@ -9,6 +9,10 @@ Requires apache and php.
 | js     | javascipt sources |
 | server | server sources |
 
+## Web setup
+Create database
+
+	mysql -u root -p < ekg3000web.sql
 
 ## Install MQTT server
 ```sh
