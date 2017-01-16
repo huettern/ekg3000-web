@@ -154,7 +154,7 @@ def process_packet(packet):
 		try:
 			print(">> samples received from %s:" % (device), end="")
 			datacut = data[8:]
-			getSamplerByDevice(device).addSample(datacut.split("\\t"))
+			getSamplerByDevice(device).addSample(datacut.split(" "))
 			print("%d" % (len(getSamplerByDevice(device).samples)), end="\r", flush=True)
 		except:
 			print("[ERROR] sstart missing from device %s" % (device))
