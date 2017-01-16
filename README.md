@@ -10,7 +10,7 @@ Requires apache and php.
 | server | server sources |
 
 ## Web setup
-Create database
+Create database:
 
 	mysql -u root -p < ekg3000web.sql
 
