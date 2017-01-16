@@ -12,9 +12,9 @@ from hbmqtt.client import MQTTClient, ConnectException, ClientException
 from hbmqtt.mqtt.constants import *
 
 
-# url = 'mqtt://localhost:1883/';
-# topic = 'ekg3000/emulator'
-# fileroot = '/home/ekg3000/files'
+url = 'mqtt://localhost:1883/';
+topic = 'ekg3000/emulator'
+fileroot = '/home/ekg3000/files'
 
 mysqlconfig = {
   'user': 'ekg3000',
@@ -22,18 +22,6 @@ mysqlconfig = {
   'host': '127.0.0.1',
   'database': 'ekg3000',
 }
-
-url = 'mqtt://46.126.176.250:4283/';
-topic = 'ekg3000/emulator';
-fileroot = '/tmp';
-# mysqlconfig = {
-#   'user': 'ekg3000',
-#   'password': 'n4O13YsX1wn686hk',
-#   'host': '46.126.176.250',
-#   'database': 'ekg3000',
-#   'port':13306
-# }
-
 
 logger = logging.getLogger(__name__)
 
