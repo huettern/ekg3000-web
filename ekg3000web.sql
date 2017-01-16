@@ -1,5 +1,6 @@
 CREATE USER 'ekg'@'localhost' IDENTIFIED BY '83U}?nq}Nf;8!nk.';
 CREATE DATABASE login;
+USE login;
 
 DROP TABLE IF EXISTS `login`;
 CREATE TABLE `login` (
@@ -14,4 +15,4 @@ LOCK TABLES `login` WRITE;
 INSERT INTO `login` VALUES (1,'ekg3000','ekg3000');
 UNLOCK TABLES;
 
-GRANT ALL PRIVILEGES ON login.* TO 'login'@'localhost';
+GRANT ALL PRIVILEGES ON login.* TO 'ekg'@'localhost';
