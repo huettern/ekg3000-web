@@ -1,5 +1,4 @@
-## Requrements
-
+## Requirements
 Requires Python > 3.3
 
 
@@ -10,7 +9,7 @@ Requires Python > 3.3
 	sudo -H pip install -r ./requirements.txt
 	sudo pip3 install hbmqtt
 
-### install
+### Install
 	git clone https://github.com/noah95/pro3-web
 	cd pro3-web/server
 
@@ -23,9 +22,11 @@ Edit the settings in the file server.py
 - mysqlconfig database: database name
 
 Now we create the database structure. Replace root with your MySQL admin username
+	
 	mysql -u root -p < config/ekg3000.sql
 
 Run the server
+	
 	python3.5 server.py
 
 ### Run script at boot
