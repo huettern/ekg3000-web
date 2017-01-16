@@ -12,9 +12,9 @@ from hbmqtt.client import MQTTClient, ConnectException, ClientException
 from hbmqtt.mqtt.constants import *
 
 
-url = 'mqtt://localhost:1883/';
-topic = 'ekg3000/emulator'
-fileroot = '/home/ekg3000/files'
+# url = 'mqtt://localhost:1883/';
+# topic = 'ekg3000/emulator'
+# fileroot = '/home/ekg3000/files'
 
 mysqlconfig = {
   'user': 'ekg3000',
@@ -23,9 +23,9 @@ mysqlconfig = {
   'database': 'ekg3000',
 }
 
-# url = 'mqtt://46.126.176.250:4283/';
-# topic = 'ekg3000/emulator';
-# fileroot = '/Users/noah/tmp/files';
+url = 'mqtt://46.126.176.250:4283/';
+topic = 'ekg3000/emulator';
+fileroot = '/tmp';
 # mysqlconfig = {
 #   'user': 'ekg3000',
 #   'password': 'n4O13YsX1wn686hk',
@@ -154,7 +154,7 @@ def process_packet(packet):
 		try:
 			print(">> samples received from %s:" % (device), end="")
 			datacut = data[8:]
-			getSamplerByDevice(device).addSample(datacut.split("\\t"))
+			getSamplerByDevice(device).addSample(datacut.split(" "))
 			print("%d" % (len(getSamplerByDevice(device).samples)), end="\r", flush=True)
 		except:
 			print("[ERROR] sstart missing from device %s" % (device))
