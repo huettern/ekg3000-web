@@ -150,7 +150,7 @@ $(document).ready(function() {
             series: [{
                 color: 'steelblue',
                 data: points,
-                strokeWidth: 1,
+                strokeWidth: 2,
                 opacity: 1
             }]
         });

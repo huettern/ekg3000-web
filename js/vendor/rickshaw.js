@@ -1795,7 +1795,7 @@ Rickshaw.Graph.Behavior.Series.Highlight = function(args) {
 	var activeLine = null;
 
 	var disabledColor = args.disabledColor || function(seriesColor) {
-		return d3.interpolateRgb(seriesColor, d3.rgb('#d8d8d8'))(0.8).toString();
+		return d3.interpolateRgb(seriesColor, d3.rgb('#6b6b6b'))(0.8).toString();
 	};
 
 	this.addHighlightEvents = function (l) {
@@ -2524,7 +2524,7 @@ Rickshaw.Graph.RangeSlider.Preview = Rickshaw.Class.create({
 			gripperColor: undefined,
 			frameTopThickness: 3,
 			frameHandleThickness: 10,
-			frameColor: "#d4d4d4",
+			frameColor: "#6b6b6b",
 			frameOpacity: 1,
 			minimumFrameWidth: 0,
 			heightRatio: 0.2
