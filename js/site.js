@@ -74,7 +74,6 @@ $(document).ready(function() {
 
             plot(jsonFile);
         }
-
     });
 
 
@@ -245,8 +244,7 @@ $(document).ready(function() {
      */
     $(window).on('resize', function() {
         graph.configure({
-            width: document.getElementById("chartContainer").offsetWidth,
-            height: 100
+            width: document.getElementById("chartContainer").offsetWidth
         });
 
         slider.configure({
