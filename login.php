@@ -52,10 +52,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <script src="js/vendor/bootstrap.js"></script>
    </head>
    <body bgcolor = "#FFFFFF">
-      <div class="container">
+	<div class="row">
          <div class="row">
-            <div class="col-md-8"></div>
-            <div class="col-md-3">
+		 <div class="col-md-4"></div>
+		 <div class="col-md-4">
                <div class="form-login">
                   <h4>Welcome to EKG3000</h4>
                   <form action="" method="post">
@@ -71,6 +71,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   </form>
                   <div style = "font-size:11px; color:#cc0000; margin-top:10px"><?php echo $error; ?></div>
                </div>
+               
+     <div class="col-md-4"></div>
             </div>
          </div>
       </div>
