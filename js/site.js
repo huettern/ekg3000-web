@@ -21,9 +21,6 @@ var offset = 0,
  * is executed after page is loaded
  */
 $(document).ready(function() {
-    /*  */
-
-    console.log();
     $("#btPrev").hide();
     $("#btNext").hide();
 
@@ -248,7 +245,8 @@ $(document).ready(function() {
      */
     $(window).on('resize', function() {
         graph.configure({
-            width: document.getElementById("chartContainer").offsetWidth
+            width: document.getElementById("chartContainer").offsetWidth,
+            height: 100
         });
 
         slider.configure({

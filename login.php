@@ -53,10 +53,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    </head>
    <body bgcolor = "#FFFFFF">
 	<div class="row">
-         <div class="row">
-		 <div class="col-md-4"></div>
-		 <div class="col-md-4" style="margin: 10px 10px 10px 10px;">
-               <div class="form-login">
+      <div class="row">
+         <div class="col-md-4"></div>
+         <div class="col-md-4" style="margin: 10px 10px 10px 10px;">
+               <div class="form-login" style="padding-bottom: 5px;">
                   <h4>Welcome to EKG3000</h4>
                   <form action="" method="post">
                      <input type="text" name="username" class="form-control input-sm chat-input" placeholder="username" />
@@ -68,11 +68,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <button type = "submit" value = "Submit" class="btn btn-primary btn-md">Login</button></br>
                         </span>
                      </div>
+                     </br>
+                     </br>
+                     <div class="wrapper">
+                        <span  class="group-btn">
+                           Tested with Chrome, Safari and Microsoft Edge.
+                        </span>
+                     </div>
                   </form>
                   <div style = "font-size:11px; color:#cc0000; margin-top:10px"><?php echo $error; ?></div>
-               </div>
-
-     
+               </div>    
             </div>
             <div class="col-md-4"></div>
          </div>

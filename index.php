@@ -80,7 +80,7 @@
                <div class="panel-default">
                   <div class="panel-body">
                      <div style="display: block; height: 500px;" id="chartContainer">
-                        <div style="width: 100%; height: 100%;" id="chart"></div>
+                        <div style="width: 100%; height: 100%;" id="chart" class="rickshaw_graph"></div>
                      </div>
                   </div>
                   <div class="panel-body">
