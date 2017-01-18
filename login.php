@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<div class="row">
          <div class="row">
 		 <div class="col-md-4"></div>
-		 <div class="col-md-4">
+		 <div class="col-md-4" style="margin: 10px 10px 10px 10px;">
                <div class="form-login">
                   <h4>Welcome to EKG3000</h4>
                   <form action="" method="post">
